@@ -12,7 +12,7 @@ var canvas;
 
 function setup() {
 	var w = window.innerWidth;
-	canvas = createCanvas(w, w/2);
+	canvas = createCanvas(w, window.innerHeight);
 	noStroke();
 
 	leftAnchor = createVector(width/2 - width/4, height/2);
@@ -26,6 +26,8 @@ function setup() {
 	rightOrigin = new Spring(rightAnchor.x, rightAnchor.y, radius/1.5, 0.85, 8.0, 0.5, rightAnchor, 0, null, radius);
 	rightEye = new Spring(rightAnchor.x, rightAnchor.y, radius/1.5, 0.9, 8.0, 0.5, rightAnchor, 1, rightOrigin, radius);
 }
+
+
 
 function draw() {
 	background(100, 40, 200);
@@ -56,7 +58,8 @@ function mouseReleased() {
 
 function windowResized() {
 	var w = window.innerWidth;
-	resizeCanvas(w, w/2);
+	var h = window.innerHeight;
+	resizeCanvas(w, h);
 
 	leftAnchor = createVector(width/2 - width/4, height/2);
 	rightAnchor = createVector(width/2 + width/4, height/2);
@@ -145,7 +148,7 @@ function Spring (x, y, s, d, m, k_in, origin, id, anchorSpring, radius) {
 
 
 		// limit the outer circle
-		if(id == 1){\
+		if(id == 1){
 			var tempVector = createVector(this.tempxpos, this.tempypos);
 			tempVector.sub(this.anchorSpring.rest_posx, this.anchorSpring.rest_posy);
 
