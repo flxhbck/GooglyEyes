@@ -11,15 +11,13 @@ var leftAnchor, rightAnchor;
 var canvas;
 
 function setup() {
-	var w = window.innerWidth;
-	var h = window.innerHeight;
-	canvas = createCanvas(w, h);
+	canvas = createCanvas(windowWidth, windowHeight+1);
 	noStroke();
 
-	leftAnchor = createVector(width/2 - width/5, height/2);
-	rightAnchor = createVector(width/2 + width/5, height/2);
+	leftAnchor = createVector(width/2 - width/3.5, height/2);
+	rightAnchor = createVector(width/2 + width/3.5, height/2);
 
-	var radius = h/3;
+	var radius = windowWidth/5;
 
 	leftOrigin = new Spring(leftAnchor.x, leftAnchor.y, radius/1.5, 0.85, 8.0, 0.5, leftAnchor, 0, null, radius);
 	leftEye = new Spring(leftAnchor.x, leftAnchor.y, radius/1.5, 0.9, 8.0, 0.5, leftAnchor, 1, leftOrigin, radius);
@@ -31,8 +29,8 @@ function setup() {
 
 
 function draw() {
-	background(100, 40, 200);
-	//background(0);
+	//background(100, 40, 200);
+	background(0);
 	leftOrigin.update();
 	leftEye.update();
 
@@ -55,24 +53,6 @@ function mousePressed() {
 function mouseReleased() {
 	leftOrigin.released();
 	rightOrigin.released();
-}
-
-function windowResized() {
-	var w = window.innerWidth;
-	var h = window.innerHeight;
-	resizeCanvas(w, h);
-
-	leftAnchor = createVector(width/2 - width/5, height/2);
-	rightAnchor = createVector(width/2 + width/5, height/2);
-
-	var radius = h/3;
-
-	leftOrigin = new Spring(leftAnchor.x, leftAnchor.y, radius/1.5, 0.85, 8.0, 0.5, leftAnchor, 0, null, radius);
-	leftEye = new Spring(leftAnchor.x, leftAnchor.y, radius/1.5, 0.9, 8.0, 0.5, leftAnchor, 1, leftOrigin, radius);
-
-	rightOrigin = new Spring(rightAnchor.x, rightAnchor.y, radius/1.5, 0.85, 8.0, 0.5, rightAnchor, 0, null, radius);
-	rightEye = new Spring(rightAnchor.x, rightAnchor.y, radius/1.5, 0.9, 8.0, 0.5, rightAnchor, 1, rightOrigin, radius);
-
 }
 
 

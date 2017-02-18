@@ -31,11 +31,11 @@ function setup(){
 
 function draw(){
   //background(100);
-  background(0 , 150, 255);
+  background(20 , 160, 255);
 
   rotationMath();
 
-  var rX = (roll/3 + PI + 0.5)%TWO_PI;
+  var rX = (roll/3 + PI)%TWO_PI;
   var rY = pitch/3;
 
 
@@ -64,6 +64,14 @@ function draw(){
   // text("pitch: "+str(round(pitch)), windowWidth/2,2*size);
   // text("yaw: "+str(round(yaw)), windowWidth/2,3*size);
 }
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  xPos = windowWidth+1;
+  size = windowHeight/5;
+  radtodeg = 180/PI;
+}
+
 
 
 
